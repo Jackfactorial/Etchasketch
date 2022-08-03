@@ -1,5 +1,5 @@
 
-function enterRows() { //Get user input for number of rows
+function enterRows() { //Get user input for number of rows and updates grid
     var input = document.getElementById("userInput").value;
     generateGrid(input);
 }
@@ -11,14 +11,19 @@ function clearGrid() {
     }
 }
 
-function generateGrid(numRows) {  
+function generateGrid(numRows) {
+    if (numRows > 100 || numRows < 1) {
+        alert("Enter a value between 1 and 100");
+        return;
+    }
+
     clearGrid(); //Clears old grid, if it exists
 
     var root = document.querySelector(':root');
     root.style.setProperty('--numRows', numRows); //Access and set numRows variable in stylesheet
 
-    const container = document.querySelector('#gridContainer'); 
-    var totalBoxes = numRows*numRows;
+    const container = document.querySelector('#gridContainer');
+    var totalBoxes = numRows * numRows;
     for (let i = 0; i < totalBoxes; i++) {
         const gridBox = document.createElement('div');
         gridBox.classList.add('gridBox');
@@ -27,8 +32,8 @@ function generateGrid(numRows) {
     fillBlack(); //Set default drawing option to black
 }
 
-function fillBlack() {
-    gridBox = document.querySelectorAll('.gridBox'); 
+function fillBlack() { //Sets drawing color to black
+    gridBox = document.querySelectorAll('.gridBox');
     for (let box of gridBox) {
         box.addEventListener('mouseenter', () => {
             box.style.backgroundColor = 'black';
@@ -36,8 +41,8 @@ function fillBlack() {
     }
 }
 
-function fillWhite() {
-    gridBox = document.querySelectorAll('.gridBox'); 
+function fillWhite() { //Sets drawing color to white
+    gridBox = document.querySelectorAll('.gridBox');
     for (let box of gridBox) {
         box.addEventListener('mouseenter', () => {
             box.style.backgroundColor = 'white';
@@ -45,33 +50,34 @@ function fillWhite() {
     }
 }
 
-function fillRandom(randColor) {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-    gridBox = document.querySelectorAll('.gridBox'); 
+function fillRandom() { //Sets drawing color to a random color
+    gridBox = document.querySelectorAll('.gridBox');
     for (let box of gridBox) {
         box.addEventListener('mouseenter', () => {
-            box.style.backgroundColor = colors[randColor];
+            let randR = Math.floor(Math.random() * 256);
+            let randG = Math.floor(Math.random() * 256);
+            let randB = Math.floor(Math.random() * 256);
+            let randRGB = "rgb(" + randR + ", " + randG + ", " + randB + ")";
+            box.style.backgroundColor = randRGB;
         })
     }
 }
 
 generateGrid(16); //Initial generation of 16x16 grid
 
-let drawingChoice;
-const buttons = document.querySelectorAll('.drawingOption'); //Change drawing color upon user selecting button
+let drawingColor;
+const buttons = document.querySelectorAll('.drawingColor'); //Change drawing color upon user selecting button
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        drawingChoice = button.id;
-        if (drawingChoice == 'black') {
+        drawingColor = button.id;
+        if (drawingColor == 'black') {
             fillBlack();
         }
-        if (drawingChoice == 'white') {
+        if (drawingColor == 'white') {
             fillWhite();
         }
-        if (drawingChoice == 'random') {
-            let rand = Math.random()
-            rand = Math.floor(rand * 6);
-            fillRandom(rand);
+        if (drawingColor == 'random') {
+            fillRandom();
         }
     });
 });
