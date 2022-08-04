@@ -4,7 +4,14 @@
 }
 
 html {
-    background-color: lightskyblue
+    background-color: rgb(224, 14, 14);
+}
+
+h1 {
+    font-family:'Apple Chancery', Trattatello, sans-serif;
+    color: gold;
+    text-align: center;
+    font-size: 40px;
 }
 
 #gridContainer {
@@ -13,14 +20,42 @@ html {
     height: var(--gridWidth);
     justify-content: stretch;
     grid-template-columns: repeat(var(--numRows), 1fr);
-    grid-gap: 1px;
-
+    margin: 0 auto;
 }
 
 .gridBox {
     background-color: white;
 }
 
+.drawingColor {
+    width: 70px;
+    height: 40px;
+}
+
 .drawingColor:focus {
-    background-color: gray;
+    border: 5px solid gold;
+}
+
+#buttonContainer {
+    text-align: center;
+    color: gold;
+    font-size: 20px;
+}
+
+#userInput {
+    width: 180px;
+}
+
+#black {
+    background-color: black;
+    color: white;
+}
+
+#white {
+    background-color: white;
+    color: black;
+}
+
+#random {
+    background-image: linear-gradient(45deg, red, green, blue);
 }

@@ -63,7 +63,7 @@ function fillRandom() { //Sets drawing color to a random color
     }
 }
 
-generateGrid(16); //Initial generation of 16x16 grid
+generateGrid(30); //Initial generation of 30x30 grid
 
 let drawingColor;
 const buttons = document.querySelectorAll('.drawingColor'); //Change drawing color upon user selecting button

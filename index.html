@@ -11,11 +11,12 @@
 
 <body>
     <h1>
+        <span style="font-size:20px">Magic</span>
         Etch-a-Sketch
+        <span style="font-size:20px">Screen</span>
     </h1>
-
-    <form id="form" onsubmit="return false;">
-        <input type="text" id="userInput" placeholder="Enter # of rows" />
+    <form id="form" onsubmit="return false;" style="text-align:center">
+        <input type="text" id="userInput" placeholder="Enter # of squares per side" />
         <input type="submit" onclick="enterRows();" />
     </form>
     <br>
@@ -26,9 +27,7 @@
         <button id="random" class="drawingColor">Random</button>
       </div>
       <br>
-    <div id="gridContainer">
-
-    </div>
+    <div id="gridContainer"></div>
 
     <script src="etchasketch.js"></script>
 </body>
